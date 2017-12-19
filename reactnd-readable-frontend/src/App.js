@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
-import { Route, Switch, Link } from 'react-router-dom'
+import { Route, Switch, Link, Redirect } from 'react-router-dom'
 import ListPosts from './components/ListPosts'
-import NotAvailable from './components/NotAvailable'
 import Sidebar from './components/Sidebar'
 import SinglePost from './components/SinglePost'
+import NotFound from './components/NotFound'
 import { Grid, Navbar, Row, Col } from 'react-bootstrap'
 
 class App extends Component {
 
   render() {
-
     return (
       <div className="App">
         <header>
@@ -32,15 +31,14 @@ class App extends Component {
                 <Col sm={6} md={10} className="posts-display"><ListPosts /></Col>
               </Row>
             )}/>
-            <Route path='/NotAvailable' component={ NotAvailable } />
-            <Route path='/:category/:postId' render={(props) => <SinglePost {...props} />} />
-            <Route  path='/:category' render={(props) => (
+            <Route exact path='/:category/:postId' render={(props) => <SinglePost {...props} />} />
+            <Route exact path='/:category' render={(props) => (
               <Row className="show-grid">
                 <Col sm={6} md={2} className="sidebar"><Sidebar /></Col>
                 <Col sm={6} md={10} className="posts-display"><ListPosts /></Col>
               </Row>
             )}/>
-
+            <Route exact path='*' component={ NotFound } />
           </Switch>
         </Grid>
       </div>

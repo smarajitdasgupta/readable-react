@@ -4,8 +4,8 @@ import PostMain from './PostMain'
 import CommentList from './CommentList'
 import { connect } from 'react-redux'
 import { loadPostComments, getPost } from '../actions'
-import { Route, withRouter, Redirect } from 'react-router-dom'
-import NotAvailable from './NotAvailable'
+import { Route, withRouter } from 'react-router-dom'
+import NotFound from './NotFound'
 import { Row, Col } from 'react-bootstrap'
 
 
@@ -32,15 +32,12 @@ class SinglePost extends Component {
     const { posts, comments } = this.props
     const post = posts[0] || {}
     const postComments = comments[post.id] || []
-
-    if (!post.id) return (
-      <Redirect to={{ pathname: this.state.backPath }} />
-    )
-    else return (
+    
+    return (
       <div>
         {
           !post.id ? (
-            <Route component={NotAvailable} />
+            <Route component={NotFound} />
           ) : (
               <div className="single-post">
                 <Row className="single-post">
