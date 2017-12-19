@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Switch, Link, Redirect } from 'react-router-dom'
+import { Route, Switch, Link } from 'react-router-dom'
 import ListPosts from './components/ListPosts'
 import Sidebar from './components/Sidebar'
 import SinglePost from './components/SinglePost'
